@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, request
 from config import get_config
-from .routes.api.admin.v1 import admin_bp
-from .routes.api.user.v1 import user_bp
+from .routes.api.admin.v1 import *
+from .routes.api.user.v1 import *
 
 # Create a Flask application
 app = Flask(__name__)
