@@ -4,7 +4,7 @@ from routes.api.admin.v1 import *
 from routes.api.user.v1 import *
 
 # Create a Flask application
-app = Flask(__name__)
+app = Flask(__name__, static_folder=None)
 app.config.from_object(get_config())
 app.register_blueprint(user_bp)
 app.register_blueprint(admin_bp)
@@ -13,7 +13,7 @@ app.config['FLASK_ENV'] = 'collabothon25'
 # Define a route for the root endpoint with a simple response
 @app.route('/', methods=['GET'])
 def home():
-    return jsonify({"message": f"Welcome to the DevSmart smart DevOps AI agent - {app.config.get('FLASK_ENV', 'colabothon25')} \n {app.url_map}"})
+    return jsonify({"message": f"Welcome to the DevSmart smart DevOps AI agent - {app.config.get('FLASK_ENV', 'colabothon25')}"})
 
 # Defines deboug routes for routes and blueprint registration
 @app.route('/routes')
@@ -33,4 +33,4 @@ def not_found(e):
 
 # Run the Flask application
 if __name__ == '__main__':
-    app.run(ssl_context='adhoc', debug=True, port=8080)
+    app.run(ssl_context='adhoc', debug=True,host="0.0.0.0", port=8080)
