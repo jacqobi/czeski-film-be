@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify
 
-user_bp = Blueprint('user', __name__, url_prefix='api/user')
+
 
 # Add another example route for handling data
 @user_bp.route('/v1/completion', methods=['POST'])

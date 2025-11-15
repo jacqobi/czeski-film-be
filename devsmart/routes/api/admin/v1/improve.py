@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify
 
-admin_bp = Blueprint('user', __name__, url_prefix='/api/admin')
+
 
 
 # For admin prompting to use for reconfiguration and improvement of the model and setup - jupyter
