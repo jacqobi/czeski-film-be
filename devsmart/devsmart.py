@@ -15,6 +15,18 @@ app.config['FLASK_ENV'] = 'collabothon25'
 def home():
     return jsonify({"message": f"Welcome to the DevSmart smart DevOps AI agent - {app.config.get('FLASK_ENV', 'colabothon25')} \n {app.url_map}"})
 
+# Defines deboug routes for routes and blueprint registration
+@app.route('/routes')
+def get_routes():
+    routes = []
+    for rule in app.url_map.iter_rules():
+        routes.append({
+            "endpoint": rule.endpoint,
+            "methods": list(rule.methods),
+            "url": str(rule)
+        })
+    return jsonify(routes)
+
 @app.errorhandler(404)
 def not_found(e):
     return jsonify({"status": 404, "error": "Not Found", "message": "The requested resource could not be found."}), 404
