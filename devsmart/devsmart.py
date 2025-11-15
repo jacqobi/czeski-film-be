@@ -16,7 +16,7 @@ def home():
     return jsonify({"message": f"Welcome to the DevSmart smart DevOps AI agent - {app.config.get('FLASK_ENV', 'colabothon25')} \n {app.url_map}"})
 
 @app.errorhandler(404)
-def not_found():
+def not_found(e):
     return jsonify({"status": 404, "error": "Not Found", "message": "The requested resource could not be found."})
 
 # Run the Flask application
