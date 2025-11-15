@@ -17,7 +17,7 @@ def home():
 
 @app.errorhandler(404)
 def not_found(e):
-    return jsonify({"status": 404, "error": "Not Found", "message": "The requested resource could not be found."})
+    return jsonify({"status": 404, "error": "Not Found", "message": "The requested resource could not be found."}), 404
 
 # Run the Flask application
 if __name__ == '__main__':

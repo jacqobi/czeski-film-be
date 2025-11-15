@@ -1,11 +1,8 @@
 from flask import Blueprint, jsonify
 
-
-
-
 # For admin prompting to use for reconfiguration and improvement of the model and setup - jupyter
 @admin_bp.route('/v1/improve', methods=['POST'])
-def get_data():
+def improve():
     # Extract JSON data sent in the POST request
     data = request.get_json()
     if not data:

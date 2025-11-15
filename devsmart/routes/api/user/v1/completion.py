@@ -1,10 +1,8 @@
 from flask import Blueprint, jsonify
 
-
-
 # Add another example route for handling data
 @user_bp.route('/v1/completion', methods=['POST'])
-def get_data():
+def post_completion():
     # Extract JSON data sent in the POST request
     data = request.get_json()
     if not data:
