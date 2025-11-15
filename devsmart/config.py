@@ -1,7 +1,7 @@
 import os
 
 class Config:
-    FLASK_APP = 'app.py'
+    FLASK_APP = os.getenv('FLASK_APP', 'devsmart.py')
     SECRET_KEY = os.getenv('SECRET_KEY', 'not-used-yet')
     DEBUG = False
     TESTING = False
@@ -9,5 +9,5 @@ class Config:
 
 
 def get_config():
-    env = os.getenv('FLASK_EVN', 'colabothon25')
+    env = os.getenv('FLASK_ENV', 'colabothon25')
     return Config()
