@@ -1,1 +1,2 @@
+ENABLE_PIP_INSTALL=true
 APP_FILE=devsmart/devsmart.py
