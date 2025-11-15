@@ -5,7 +5,7 @@ from flask import jsonify, request
 
 from . import user_bp  # the blueprint from __init__.py
 
-# You can override this in env: TINYLLAMA_URL
+# Override via env if needed
 TINYLLAMA_URL = os.getenv(
     "TINYLLAMA_URL",
     "https://tinyllama-11b-chat-v10-czeski-film.apps.cluster-bzgz5.bzgz5.sandbox5179.opentlc.com/v1/chat/completions",
@@ -16,24 +16,17 @@ TINYLLAMA_URL = os.getenv(
 def post_completion():
     data = request.get_json(silent=True) or {}
 
-    user_message = data.get("message")
-    if not user_message:
-        return jsonify({"error": "Missing 'message' in JSON body"}), 400
-
-    # Build the same prompt you used in curl
-    prompt = (
-        "this is users message, it is wrapped in |, so look "
-        f"|{user_message}|, please choose one of the categories matching the message "
-        "and only reply with one word which is the chosen category - patching, nature, pastry. "
-        "just send one word and nothing else."
-    )
+    # User must send: { "prompt": "..." }
+    user_prompt = data.get("prompt")
+    if not user_prompt:
+        return jsonify({"error": "Missing 'prompt' in JSON body"}), 400
 
     payload = {
         "model": "tinyllama-11b-chat-v10",
         "messages": [
             {
                 "role": "user",
-                "content": prompt,
+                "content": user_prompt,
             }
         ],
     }
@@ -41,17 +34,8 @@ def post_completion():
     try:
         resp = requests.post(TINYLLAMA_URL, json=payload, timeout=20)
     except Exception as e:
-        return (
-            jsonify(
-                {
-                    "error": "tinyllama_unreachable",
-                    "details": str(e),
-                }
-            ),
-            502,
-        )
+        return jsonify({"error": "tinyllama_unreachable", "details": str(e)}), 502
 
-    # If TinyLlama itself failed, pass its status and body back
     if not resp.ok:
         try:
             body = resp.json()
@@ -59,7 +43,6 @@ def post_completion():
             body = {"raw": resp.text}
         return jsonify({"error": "tinyllama_error", "status": resp.status_code, "body": body}), resp.status_code
 
-    # Success – just proxy the LLM response
     try:
         body = resp.json()
     except Exception:
