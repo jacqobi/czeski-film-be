@@ -1,7 +1,7 @@
 import os
 
 class Config:
-    FLASK_APP = os.getenv('FLASK_APP', 'devsmart.py')
+    FLASK_APP = 'devsmart.py'
     SECRET_KEY = os.getenv('SECRET_KEY', 'not-used-yet')
     DEBUG = False
     TESTING = False

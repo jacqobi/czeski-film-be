@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, request
-from config import get_confg
+from config import get_config
 import management as m
 import user as u
 
