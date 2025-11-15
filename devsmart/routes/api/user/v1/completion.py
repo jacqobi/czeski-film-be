@@ -47,6 +47,6 @@ def post_completion():
         body = resp.json()
     except Exception:
         return jsonify({"error": "invalid_json_from_tinyllama", "raw": resp.text}), 502
-    received = jsonify(body).choices[0].message
+    received = body.choices[0].message
 
     return jsonify(received), 200
