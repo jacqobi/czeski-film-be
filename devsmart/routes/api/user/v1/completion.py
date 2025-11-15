@@ -50,11 +50,8 @@ def post_completion():
     message_obj = body["choices"][0]["message"]
     raw_text = message_obj.get("content", "") or ""
 
-    category = pick_category_from_text(raw_text)
-
     return jsonify(
         {
-            "category": category,   # <- nice clean label
             "raw": raw_text,        # <- full LLM answer if you ever need to debug
         }
     ), 200
