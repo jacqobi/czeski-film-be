@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, request
-from management
-from user
+import management as m
+import user as u
 
 # Create a Flask application
 app = Flask(__name__)
