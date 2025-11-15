@@ -12,7 +12,10 @@ app.register_blueprint(admin_bp)
 # Define a route for the root endpoint with a simple response
 @app.route('/', methods=['GET'])
 def home():
-    return jsonify({"message": f"Welcome to the DevSmart smart DevOps AI agent - {app.config.get('FLASK_ENV', '')}"})
+    return jsonify({"message": f"Welcome to the DevSmart smart DevOps AI agent - {app.config.get('FLASK_ENV', 'colabothon25')} \n {app.url_map}"})
+
+@app.errorhandler(404)
+    return jsonify({"status": 404, "error": "Not Found", "message": "The requested resource could not be found."})
 
 # Run the Flask application
 if __name__ == '__main__':
