@@ -3,12 +3,18 @@ from config import get_config
 from routes.api.admin.v1 import *
 from routes.api.user.v1 import *
 
+from flask_cors import CORS
+
 # Create a Flask application
 app = Flask(__name__, static_folder=None)
 app.config.from_object(get_config())
+app.config['FLASK_ENV'] = 'collabothon25'
+
+CORS(app, resources={r"/api/*": {"origins": "*"}})
+
+
 app.register_blueprint(user_bp)
 app.register_blueprint(admin_bp)
-app.config['FLASK_ENV'] = 'collabothon25'
 
 # Define a route for the root endpoint with a simple response
 @app.route('/', methods=['GET'])
