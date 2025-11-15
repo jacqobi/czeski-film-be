@@ -1,4 +1,5 @@
 from flask import Blueprint, jsonify
+from . import admin_bp
 
 # Updates old prompt in the dabase - jupyter
 @admin_bp.route('/v1/override', methods=['PATCH'])

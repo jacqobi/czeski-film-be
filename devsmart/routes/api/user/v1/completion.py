@@ -1,4 +1,5 @@
 from flask import Blueprint, jsonify
+from . import user_bp
 
 # Add another example route for handling data
 @user_bp.route('/v1/completion', methods=['POST'])

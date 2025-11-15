@@ -1,4 +1,5 @@
 from flask import Blueprint, jsonify
+from . import admin_bp
 
 # For admin prompting to use for reconfiguration and improvement of the model and setup - jupyter
 @admin_bp.route('/v1/improve', methods=['POST'])

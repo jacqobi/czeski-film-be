@@ -1,4 +1,5 @@
 from flask import Blueprint, jsonify
+from . import admin_bp
 
 # Lists available AI LLM models that can be used
 @admin_bp.route('/v1/models', methods=['GET'])
