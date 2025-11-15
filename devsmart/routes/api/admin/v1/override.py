@@ -1,5 +1,9 @@
+from flask import Blueprint, jsonify
+
+admin_bp = Blueprint('user', __name__, url_prefix='/api/admin/v1')
+
 # Updates old prompt in the dabase - jupyter
-@app.route('/api/v1/management/override', methods=['PATCH'])
+@admin_bp.route('/v1/override', methods=['PATCH'])
 def get_data():
     # Extract JSON data sent in the POST request
     data = request.get_json()

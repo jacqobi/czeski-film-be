@@ -1,10 +1,8 @@
 from flask import Flask, jsonify, request
 from config import get_config
-import management as m
-import user as u
 
 # Create a Flask application
-app = Flask(__name__)
+app = create_app()
 app.config.from_object(get_config())
 
 # Define a route for the root endpoint with a simple response
@@ -14,4 +12,4 @@ def home():
 
 # Run the Flask application
 if __name__ == '__main__':
-    app.run(debug=True, port=8080)
+    app.run(ssl_context='adhoc', debug=True, port=8080)

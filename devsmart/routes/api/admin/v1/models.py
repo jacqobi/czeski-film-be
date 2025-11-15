@@ -1,5 +1,9 @@
+from flask import Blueprint, jsonify
+
+admin_bp = Blueprint('user', __name__, url_prefix='/api/admin')
+
 # Lists available AI LLM models that can be used
-@app.route('/api/management/v1/models', methods=['GET'])
+@admin_bp.route('/v1/models', methods=['GET'])
 def get_data():
     # Extract JSON data sent in the POST request
     data = request.get_json()
@@ -11,7 +15,7 @@ def get_data():
     
 
 # updates available models list configuration of the application AI LLM models that can be used - jupyter
-@app.route('/api/management/v1/models', methods=['PUT'])
+@admin_bp.route('/v1/models', methods=['PUT'])
 def get_data():
     # Extract JSON data sent in the POST request
     data = request.get_json()
