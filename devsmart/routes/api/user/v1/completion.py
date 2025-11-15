@@ -47,6 +47,14 @@ def post_completion():
         body = resp.json()
     except Exception:
         return jsonify({"error": "invalid_json_from_tinyllama", "raw": resp.text}), 502
-    received = body['choices'][0].message
+    message_obj = body["choices"][0]["message"]
+    raw_text = message_obj.get("content", "") or ""
 
-    return jsonify(received), 200
+    category = pick_category_from_text(raw_text)
+
+    return jsonify(
+        {
+            "category": category,   # <- nice clean label
+            "raw": raw_text,        # <- full LLM answer if you ever need to debug
+        }
+    ), 200
