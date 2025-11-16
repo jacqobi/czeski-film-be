@@ -1,2 +1,7 @@
 ENABLE_PIP_INSTALL=true
 APP_FILE=devsmart/devsmart.py
+POSTGRES_HOST= ${postgresql_database-host}
+PGPORT= ${postgresql_database-port}
+PGDATABASE=${postgresql_database-name}
+PGUSER=${postgresql_database-user}
+PGPASSWORD=${postgresql_database-password}
