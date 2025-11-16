@@ -11,7 +11,7 @@ from . import user_bp  # blueprint from __init__.py
 
 # ---------- DB CONFIG ----------
 
-DB_HOST = os.getenv("PGHOST") or os.getenv("POSTGRES_HOST", "localhost")
+DB_HOST = os.getenv("PGHOST") or os.getenv("POSTGRES_HOST", "postgresql")
 DB_PORT = int(os.getenv("PGPORT", "5432"))
 DB_NAME = os.getenv("PGDATABASE", "postgres")
 DB_USER = os.getenv("PGUSER", "postgres")
