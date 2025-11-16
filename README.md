@@ -1,4 +1,7 @@
 # DevSmart
+## Team - Czeski Film
+## Project devSMARTai
+
 The DevSmart smart DevOps AI agent.
 
 ## Overview
